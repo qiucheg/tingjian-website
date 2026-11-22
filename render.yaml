@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: tingjian-another-picture
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/me
+    disk:
+      name: tingjian-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATA_DIR
+        value: /var/data/data
+      - key: UPLOAD_DIR
+        value: /var/data/uploads
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: ADMIN_NICKNAME
+        value: admin
+      - key: ADMIN_PASSWORD
+        sync: false
